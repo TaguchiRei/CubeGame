@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,10 @@ public class GameMaster : MonoBehaviour
     [SerializeField] GameObject _buttonText;
     Text _upText;
     Text _buttText;
+    Camera _camera;
+    public static float _mousePositionX;
+    public static float _mousePositionY;
+    public static float _haveKey =0;
     private void Start()
     {
         _upperText = GameObject.Find("左上テキスト");
@@ -16,12 +21,21 @@ public class GameMaster : MonoBehaviour
         _buttText = _buttonText.GetComponent<Text>();
         _upText.text = "制作中";
         _buttText.text = "プレイ";
+        _camera = Camera.main;
+    }
+    private void Update()
+    {
+        var WorldPoint = _camera.ScreenToWorldPoint(Input.mousePosition);
+        var x = Math.Floor(WorldPoint.x) + 0.5;
+        var y = Math.Floor(WorldPoint.y) + 0.5;
+        _mousePositionX = (float)x;
+        _mousePositionY = (float)y;
     }
     public void GameMode()
     {
         if (_gameMode == 0)
         {
-            
+
             _gameMode = 1;
             _upText.text = "プレイ中";
             _buttText.text = "編集";

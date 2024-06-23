@@ -1,24 +1,21 @@
-using System;
 using UnityEngine;
 
 public class Appearance : MonoBehaviour
 {
-    private Camera _camera;
+    Door door;
     void Start()
     {
-        _camera = Camera.main;
+        door = this.GetComponent<Door>();
     }
     void Update()
     {
         if (GameMaster._gameMode == 0 && Input.GetButtonDown("Fire1"))
         {
-            var WorldPoint = _camera.ScreenToWorldPoint(Input.mousePosition);
-            var x = Math.Floor(WorldPoint.x) + 0.5;
-            var y = Math.Floor(WorldPoint.y) + 0.5;
-            if (x ==transform.position.x &&y == transform.position.y)
+            if (GameMaster._mousePositionX == transform.position.x && GameMaster._mousePositionY == transform.position.y)
             {
                 Destroy(gameObject);
             }
+
         }
     }
 }

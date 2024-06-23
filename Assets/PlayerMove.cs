@@ -26,11 +26,6 @@ public class PlayerMove : MonoBehaviour
         gun,
     }
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         //¶‰E‚É“®‚­‚½‚ß‚ÌƒvƒƒOƒ‰ƒ€

@@ -3,13 +3,11 @@ using UnityEngine;
 
 public class Installation : MonoBehaviour
 {
-    private Camera _camera;
     public GameObject[] table = new GameObject[5];
     [SerializeField] SpriteRenderer _spriteRenderer;
-    int _type = 0;
+    public static int _type = 0;
     void Start()
     {
-        _camera = Camera.main;
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -18,21 +16,12 @@ public class Installation : MonoBehaviour
     {
         if (GameMaster._gameMode == 0)
         {
-            var WorldPoint = _camera.ScreenToWorldPoint(Input.mousePosition);
-            var x = Math.Floor(WorldPoint.x) + 0.5;
-            var y = Math.Floor(WorldPoint.y) + 0.5;
-            float X = (float)x;
-            float Y = (float)y;
-            transform.position = new Vector2(X, Y);
+            transform.position = new Vector2(GameMaster._mousePositionX, GameMaster._mousePositionY);
             _spriteRenderer.color = new Color(255, 255, 255, 255);
             if (Input.GetButtonDown("Fire1"))
             {
-                var newx = Math.Floor(transform.position.x) + 0.5;
-                var newy = Math.Floor(transform.position.y) + 0.5;
                 var make = Instantiate(table[_type]);
-                float floatx = (float)newx;
-                float floaty = (float)newy;
-                make.transform.position = new Vector2(floatx, floaty);
+                make.transform.position = new Vector2(GameMaster._mousePositionX, GameMaster._mousePositionY);
             }
             if (Input.GetButtonDown("Fire2"))
             {
