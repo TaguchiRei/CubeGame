@@ -15,6 +15,7 @@ public class GameMaster : MonoBehaviour
     public static float _haveKey =0;
     public static bool _link = false;
     public static bool _linkMode =false;
+    public static bool key = true;
     private void Start()
     {
         _upperText = GameObject.Find("左上テキスト");

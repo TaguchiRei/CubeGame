@@ -14,7 +14,6 @@ public class LockDoor : MonoBehaviour
         _plyerTransform = _gameObject.GetComponent<Transform>();
         _spriteRenderer.color = new Color(255, 255, 255, 255);
         _boxCollider.enabled = true;
-
     }
     void Update()
     {
@@ -34,15 +33,26 @@ public class LockDoor : MonoBehaviour
         {
             ResetGame();
         }
+
     }
+    /// <summary>
+    /// •R‚Ã‚¯‚µ‚½Œ®‚©‚çŠJ‚¯‚ç‚ê‚é‚©‚ðŠl“¾
+    /// </summary>
+    /// <param name="open"></param>
     public void Open(bool open)
     {
-        _canOpen = open;
+        if(open == true)
+        {
+            _canOpen = true;
+        }
     }
     void ResetGame()
     {
         _canOpen =false;
+        _boxCollider.enabled = true;
         _spriteRenderer.color = new Color(255, 255, 255, 255);
     }
     
 }
+
+

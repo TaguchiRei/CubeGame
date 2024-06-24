@@ -14,46 +14,43 @@ public class Key : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Vector2 select = new Vector3(GameMaster._mousePositionX, GameMaster._mousePositionY, transform.position.z);
-            Vector2 thisPosition = transform.position;
-            if (!_linkMode)
-            {
-                if (select == thisPosition)
-                {
-                    GameMaster._linkMode = true;
-                    _linkMode = true;
-                }
-            }
-        }
-        //鍵付きドア生成
-        if (GameMaster._link)
-        {
-            lockedDoor = Instantiate(_lockDoor, new Vector2(GameMaster._mousePositionX, GameMaster._mousePositionY), Quaternion.identity) as GameObject;
-            GameMaster._link = false;
-            _linking = true;
-            Debug.Log("変換");
-        }
-        //鍵付きドア開閉
-        if (_linking)
-        {
-            open = lockedDoor.GetComponent<LockDoor>();
-            if (_haveKey)
-            {
-                if (lockedDoor != null)
-                {
-                    open.Open(true);
-                }
-                else
-                {
-                    Debug.Log("lockedDoorがnullになっています");
-                }
-            }
-        }
         if (GameMaster._gameMode == 0)
         {
             ResetGame();
+            Vector2 select = new Vector2(GameMaster._mousePositionX, GameMaster._mousePositionY);
+            Vector2 thisPosition = transform.position;
+            if (Input.GetKeyDown(KeyCode.R) && select == thisPosition &&GameMaster.key)
+            {
+                if (!_linkMode)
+                {
+                    if (select == thisPosition)
+                    {
+                        GameMaster._linkMode = true;
+                        _linkMode = true;
+                        GameMaster.key = false;
+                    }
+                }
+            }
+            //鍵付きドア生成
+            if (GameMaster._link &&_linkMode)
+            {
+                lockedDoor = Instantiate(_lockDoor, new Vector2(GameMaster._mousePositionX, GameMaster._mousePositionY), Quaternion.identity) as GameObject;
+                GameMaster._link = false;
+                GameMaster._linkMode = false;
+                _linkMode |= false;
+                _linking = true;
+            }
+        }
+        else
+        {
+            //鍵付きドア開閉
+            if (_haveKey)
+            {
+                open = lockedDoor.GetComponent<LockDoor>();
+                open.Open(true);
+                _linking = false;
+                _haveKey = false;
+            }
         }
     }
 

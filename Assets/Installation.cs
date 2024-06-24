@@ -5,7 +5,7 @@ public class Installation : MonoBehaviour
 {
     public GameObject[] _table = new GameObject[5];
     public Sprite _LinkCursor;
-    public Sprite _Cursor;
+    public  Sprite _Cursor;
     [SerializeField] SpriteRenderer _spriteRenderer;
     public static int _type = 0;
 

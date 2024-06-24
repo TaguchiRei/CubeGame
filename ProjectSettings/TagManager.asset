@@ -8,15 +8,16 @@ TagManager:
   - door
   - key
   - player
+  - stopper
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - stopper
   - Water
   - UI
-  - 
-  - 
+  - player
+  - ground
   - 
   - 
   - 
