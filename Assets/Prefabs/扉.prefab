@@ -148,8 +148,6 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 4611481457522208138}
   _boxCollider: {fileID: 1521838582634762192}
   _transform: {fileID: 5096487688569020873}
-  _lineRenderer: {fileID: 0}
-  _linking: 0
 --- !u!114 &-3096944250995017533
 MonoBehaviour:
   m_ObjectHideFlags: 0

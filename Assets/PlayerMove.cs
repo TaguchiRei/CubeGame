@@ -4,6 +4,7 @@ public class PlayerMove : MonoBehaviour
 {
     [SerializeField] Rigidbody2D _rigifbody2d;
     [SerializeField] Transform _transform;
+    [SerializeField] SpriteRenderer _spriteRenderer;
     /// <summary>
     /// 移動速度
     /// </summary>
@@ -28,36 +29,46 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        //左右に動くためのプログラム
-        float Yspeed = _rigifbody2d.velocity.y;
-        float move = Input.GetAxisRaw("Horizontal");
-        if (move != _wall * -1)
+        if (GameMaster._gameMode == 1)
         {
-            _rigifbody2d.velocity = new Vector2(_moveSpeed * move, Yspeed);
+            _spriteRenderer.color = new Color(255, 255, 255, 255);
+            //左右に動くためのプログラム
+            float Yspeed = _rigifbody2d.velocity.y;
+            float move = Input.GetAxisRaw("Horizontal");
+            if (move != _wall * -1)
+            {
+                _rigifbody2d.velocity = new Vector2(_moveSpeed * move, Yspeed);
+            }
+            else
+            {
+                _rigifbody2d.velocity = new Vector2(0, Yspeed);
+            }
+            if (move == 0)
+            {
+                _wall = 0;
+            }
+
+            if (move < 0)
+            {
+                _transform.transform.localScale = new Vector3(-2, 2, 1);
+            }
+            else if (move > 0)
+            {
+                _transform.transform.localScale = new Vector3(2, 2, 1);
+            }
+            //スペースキーを押したときの動作
+            if (Input.GetButtonDown("Jump") && canJump)
+            {
+                var jump = _jumpP * 13;
+                _rigifbody2d.velocity = Vector2.up * jump;
+                canJump = false;
+            }
         }
         else
         {
-            _rigifbody2d.velocity = new Vector2(0, Yspeed);
-        }
-        if (move == 0)
-        {
-            _wall = 0;
-        }
-
-        if (move < 0)
-        {
-            _transform.transform.localScale = new Vector3(-2, 2, 1);
-        }
-        else if (move > 0)
-        {
-            _transform.transform.localScale = new Vector3(2, 2, 1);
-        }
-        //スペースキーを押したときの動作
-        if (Input.GetButtonDown("Jump") && canJump)
-        {
-            var jump = _jumpP * 13;
-            _rigifbody2d.velocity = Vector2.up * jump;
-            canJump = false;
+            _transform.position = new Vector2(0.5f, 0.5f);
+            _rigifbody2d.velocity = Vector2.zero;
+            _spriteRenderer.color = new Color(255, 255, 255, 0);
         }
 
     }

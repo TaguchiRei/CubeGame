@@ -2,11 +2,6 @@ using UnityEngine;
 
 public class Appearance : MonoBehaviour
 {
-    Door door;
-    void Start()
-    {
-        door = this.GetComponent<Door>();
-    }
     void Update()
     {
         if (GameMaster._gameMode == 0 && Input.GetButtonDown("Fire1"))
@@ -16,6 +11,10 @@ public class Appearance : MonoBehaviour
                 Destroy(gameObject);
             }
 
+        }
+        if(transform.position.x<0.5f || transform.position.y < 0.5f)
+        {
+            Destroy (gameObject);
         }
     }
 }

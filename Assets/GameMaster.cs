@@ -13,6 +13,8 @@ public class GameMaster : MonoBehaviour
     public static float _mousePositionX;
     public static float _mousePositionY;
     public static float _haveKey =0;
+    public static bool _link = false;
+    public static bool _linkMode =false;
     private void Start()
     {
         _upperText = GameObject.Find("左上テキスト");
@@ -30,6 +32,10 @@ public class GameMaster : MonoBehaviour
         var y = Math.Floor(WorldPoint.y) + 0.5;
         _mousePositionX = (float)x;
         _mousePositionY = (float)y;
+        if (GameMaster._gameMode == 0)
+        {
+            ResetGame();
+        }
     }
     public void GameMode()
     {
@@ -46,5 +52,9 @@ public class GameMaster : MonoBehaviour
             _upText.text = "制作中";
             _buttText.text = "プレイ";
         }
+    }
+    private void ResetGame()
+    {
+        _haveKey = 0;
     }
 }
