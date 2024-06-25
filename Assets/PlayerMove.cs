@@ -1,5 +1,6 @@
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -7,6 +8,10 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] Transform _transform;
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] AudioSource _audioSource;
+    GameObject _upperText;
+    GameObject _buttonText;
+    Text _upText;
+    Text _buttonText1;
     /// <summary>
     /// 移動速度
     /// </summary>
@@ -29,6 +34,13 @@ public class PlayerMove : MonoBehaviour
     {
         nomal,
         gun,
+    }
+    private void Start()
+    {
+        _upperText = GameObject.Find("左上テキスト");
+        _buttonText = GameObject.Find("ボタンテキスト");
+        _upText = _upperText.GetComponent<Text>();
+        _buttonText1 = _buttonText.GetComponent<Text>();
     }
 
     void Update()
@@ -79,8 +91,11 @@ public class PlayerMove : MonoBehaviour
             _endTime -= Time.deltaTime;
             if (_endTime <= 0)
             {
-
                 _end = false;
+                _upText.text = "Makeng...";
+                _buttonText1.text = "Play!";
+                _endTime = 2;
+                GameMaster._gameMode = 0;
             }
         }
 

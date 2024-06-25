@@ -5,10 +5,10 @@ using UnityEngine.UI;
 public class GameMaster : MonoBehaviour
 {
     public static float _gameMode = 0;
-    [SerializeField] GameObject _upperText;
-    [SerializeField] GameObject _buttonText;
+    GameObject _upperText;
+    GameObject _buttonText;
     Text _upText;
-    Text _buttText;
+    Text _buttonText1;
     Camera _camera;
     public static float _mousePositionX;
     public static float _mousePositionY;
@@ -22,9 +22,9 @@ public class GameMaster : MonoBehaviour
         _upperText = GameObject.Find("左上テキスト");
         _buttonText = GameObject.Find("ボタンテキスト");
         _upText = _upperText.GetComponent<Text>();
-        _buttText = _buttonText.GetComponent<Text>();
+        _buttonText1 = _buttonText.GetComponent<Text>();
         _upText.text = "Makeng...";
-        _buttText.text = "Play!";
+        _buttonText1.text = "Play!";
         _camera = Camera.main;
     }
     private void Update()
@@ -46,13 +46,13 @@ public class GameMaster : MonoBehaviour
 
             _gameMode = 1;
             _upText.text = "PlayMode";
-            _buttText.text = "Make";
+            _buttonText1.text = "Make";
         }
         else
         {
             _gameMode = 0;
             _upText.text = "Makeng...";
-            _buttText.text = "Play!";
+            _buttonText1.text = "Play!";
         }
     }
     private void ResetGame()
