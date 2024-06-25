@@ -23,8 +23,8 @@ public class GameMaster : MonoBehaviour
         _buttonText = GameObject.Find("ボタンテキスト");
         _upText = _upperText.GetComponent<Text>();
         _buttText = _buttonText.GetComponent<Text>();
-        _upText.text = "制作中";
-        _buttText.text = "プレイ";
+        _upText.text = "Makeng...";
+        _buttText.text = "Play!";
         _camera = Camera.main;
     }
     private void Update()
@@ -45,14 +45,14 @@ public class GameMaster : MonoBehaviour
         {
 
             _gameMode = 1;
-            _upText.text = "プレイ中";
-            _buttText.text = "編集";
+            _upText.text = "PlayMode";
+            _buttText.text = "Make";
         }
         else
         {
             _gameMode = 0;
-            _upText.text = "制作中";
-            _buttText.text = "プレイ";
+            _upText.text = "Makeng...";
+            _buttText.text = "Play!";
         }
     }
     private void ResetGame()

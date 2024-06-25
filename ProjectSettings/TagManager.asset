@@ -9,6 +9,9 @@ TagManager:
   - key
   - player
   - stopper
+  - lockeddoor
+  - switchBox
+  - gool
   layers:
   - Default
   - TransparentFX

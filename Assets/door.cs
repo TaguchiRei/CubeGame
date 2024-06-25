@@ -8,6 +8,7 @@ public class Door : MonoBehaviour
     [SerializeField] Transform _transform;
     GameObject _gameObject;
     Transform _plyerTransform;
+    bool _switchBox =false;
     private void Start()
     {
         _gameObject = GameObject.Find("cube");
@@ -22,15 +23,20 @@ public class Door : MonoBehaviour
         var distancePosition = _plyerTransform.position - transform.position;
         var distance = Mathf.Abs(distancePosition.x) + Mathf.Abs(distancePosition.y);
         //Œ®‚ªŠJ‚¢‚Ä‚¢‚é‚Æ‚«‚Í“§–¾‰»‚µ‚ÄŒ©‚¦‚È‚­‚È‚é
-        if (_canOpen && GameMaster._gameMode == 1)
+        if (_canOpen && GameMaster._gameMode == 1||_switchBox==true)
         {
             var distance2 = distance / 3;
             if (distance2 > 1)
             {
                 distance2 = 1;
             }
-            _spriteRenderer.color = new Color(255, 255, 200, distance2);
+            _spriteRenderer.color = new Color(255, 2, 200, distance2);
             _boxCollider.enabled = false;
+        }
+        else
+        {
+            _boxCollider.enabled = true;
+            _spriteRenderer.color = new Color(255,255,255,255);
         }
         //Œ®‚ðŽ‚Á‚Ä‚¢‚é‚Æ‚«‚ÍÁ”ï‚µ‚Ä’Ê‚ê‚é‚æ‚¤‚É‚È‚é
         if (Input.GetKeyDown(KeyCode.R) && GameMaster._gameMode == 1 && GameMaster._haveKey > 0 && distance < 2)
@@ -59,6 +65,21 @@ public class Door : MonoBehaviour
         _canOpen = false;
         _spriteRenderer.color = new Color(255, 255, 255, 255);
         _boxCollider.enabled = true;  
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("switchBox"))
+        {
+            _switchBox = true;
+            Debug.Log("Yes");
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("switchBox"))
+        {
+            _switchBox = false;
+        }
     }
 }
 

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Installation : MonoBehaviour
@@ -7,6 +6,9 @@ public class Installation : MonoBehaviour
     public Sprite _LinkCursor;
     public  Sprite _Cursor;
     [SerializeField] SpriteRenderer _spriteRenderer;
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _put;
+    [SerializeField] AudioClip _change;
     public static int _type = 0;
 
     void Start()
@@ -34,6 +36,7 @@ public class Installation : MonoBehaviour
                     {
                         var make = Instantiate(_table[_type]);
                         make.transform.position = new Vector2(GameMaster._mousePositionX, GameMaster._mousePositionY);
+                        SE();
                     }
                     if (Input.GetButtonDown("Fire2"))
                     {
@@ -42,6 +45,7 @@ public class Installation : MonoBehaviour
                         {
                             _type = 0;
                         }
+                        SE(2);
                     }
                 }
             }
@@ -62,6 +66,16 @@ public class Installation : MonoBehaviour
         else
         {
             _spriteRenderer.sprite = _LinkCursor;
+        }
+    }
+    void SE(float clip =1)
+    {
+        if(clip == 1)
+        {
+            _audioSource.PlayOneShot(_put);
+        }else if(clip == 2)
+        {
+            _audioSource.PlayOneShot(_change);
         }
     }
 }

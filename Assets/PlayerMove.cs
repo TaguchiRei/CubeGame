@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
@@ -5,6 +6,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] Rigidbody2D _rigifbody2d;
     [SerializeField] Transform _transform;
     [SerializeField] SpriteRenderer _spriteRenderer;
+    [SerializeField] AudioSource _audioSource;
     /// <summary>
     /// 移動速度
     /// </summary>
@@ -20,7 +22,9 @@ public class PlayerMove : MonoBehaviour
     /// <summary>
     /// キャラクターのタイプ
     /// </summary>
-    bool canJump = false;
+    bool _canJump = false;
+    bool _end = false;
+    float _endTime = 2;
     public enum Type
     {
         nomal,
@@ -57,11 +61,11 @@ public class PlayerMove : MonoBehaviour
                 _transform.transform.localScale = new Vector3(2, 2, 1);
             }
             //スペースキーを押したときの動作
-            if (Input.GetButtonDown("Jump") && canJump)
+            if (Input.GetButtonDown("Jump") && _canJump)
             {
                 var jump = _jumpP * 13;
                 _rigifbody2d.velocity = Vector2.up * jump;
-                canJump = false;
+                _canJump = false;
             }
         }
         else
@@ -69,6 +73,15 @@ public class PlayerMove : MonoBehaviour
             _transform.position = new Vector2(0.5f, 0.5f);
             _rigifbody2d.velocity = Vector2.zero;
             _spriteRenderer.color = new Color(255, 255, 255, 0);
+        }
+        if (_end)
+        {
+            _endTime -= Time.deltaTime;
+            if (_endTime <= 0)
+            {
+
+                _end = false;
+            }
         }
 
     }
@@ -81,12 +94,23 @@ public class PlayerMove : MonoBehaviour
         }
         else
         {
-            canJump = true;
+            _canJump = true;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("gool")&&_end ==false)
+        {
+            _audioSource.time = 0.7f;
+            _audioSource.Play();
+            _end = true;
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
         _wall = 0;
     }
+
+    
 
 }

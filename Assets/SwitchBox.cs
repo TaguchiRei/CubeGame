@@ -5,33 +5,35 @@ public class SwitchBox : MonoBehaviour
     CircleCollider2D circleCollider;
     public float X = 0;
     public float Y = 0;
-    bool _lever = false;
     bool _keyDownWait = false;
     bool _canUse =false;
     void Start()
     {
         circleCollider = GetComponent<CircleCollider2D>();
+        circleCollider.enabled = false;
     }
 
     void Update()
     {
-        //circleCollider.offset = new Vector2(X, Y);
-
+        circleCollider.offset = new Vector2(X, Y);
+        Vector2 select = new Vector2(GameMaster._mousePositionX, GameMaster._mousePositionY);
+        Vector2 thisPosition = transform.position;
         if (GameMaster._gameMode == 1)
         {
-            if (_lever)
+            if (Input.GetKeyDown(KeyCode.R) && _canUse)
             {
-                circleCollider.enabled = true;
-            }
-            else
-            {
-                circleCollider.enabled = false;
+                if(circleCollider.enabled == true)
+                {
+                    circleCollider.enabled =false;
+                }
+                else
+                {
+                    circleCollider.enabled = true;
+                }
             }
         }
         else if (GameMaster._gameMode == 0)
         {
-            Vector2 select = new Vector2(GameMaster._mousePositionX, GameMaster._mousePositionY);
-            Vector2 thisPosition = transform.position;
             if (Input.GetKeyDown(KeyCode.R))
             {
                 if (select == thisPosition && _keyDownWait == false)
@@ -39,8 +41,8 @@ public class SwitchBox : MonoBehaviour
                     _keyDownWait = true;
                 }else if (_keyDownWait)
                 {
-                    X = GameMaster._mousePositionX;
-                    Y = GameMaster._mousePositionY;
+                    X = (GameMaster._mousePositionX-transform.position.x)*0.55f;
+                    Y = (GameMaster._mousePositionY-transform.position.y)*0.55f;
                     _keyDownWait = false;
                 }
             }
