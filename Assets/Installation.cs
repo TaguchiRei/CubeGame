@@ -21,7 +21,7 @@ public class Installation : MonoBehaviour
         {
             transform.position = new Vector2(GameMaster._mousePositionX, GameMaster._mousePositionY);
             _spriteRenderer.color = new Color(255, 255, 255, 255);
-            if (!GameMaster._linkMode)
+            if (!GameMaster._keyLinkMode)
             {
                 //スタート地点と同じならブロック生成しない
                 if (GameMaster._mousePositionX == 0.5f && GameMaster._mousePositionY == 0.5)
@@ -55,7 +55,7 @@ public class Installation : MonoBehaviour
         {
             _spriteRenderer.color = new Color(255, 255, 255, 0);
         }
-        if (!GameMaster._linkMode)
+        if (!GameMaster._keyLinkMode)
         {
             _spriteRenderer.sprite = _Cursor;
         }

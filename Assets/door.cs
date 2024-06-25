@@ -43,7 +43,7 @@ public class Door : MonoBehaviour
         {
             Vector2 select = new Vector3(GameMaster._mousePositionX, GameMaster._mousePositionY, transform.position.z);
             Vector2 thisPosition = transform.position;
-            if (select == thisPosition && GameMaster._linkMode)
+            if (select == thisPosition && GameMaster._keyLinkMode)
             {
                 GameMaster._link = true;
                 Destroy(gameObject);

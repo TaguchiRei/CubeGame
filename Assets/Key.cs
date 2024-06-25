@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Key : MonoBehaviour
 {
-    [SerializeField] Transform _transform;
     [SerializeField] BoxCollider2D _boxCollider;
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] GameObject _lockDoor;
@@ -25,7 +24,7 @@ public class Key : MonoBehaviour
                 {
                     if (select == thisPosition)
                     {
-                        GameMaster._linkMode = true;
+                        GameMaster._keyLinkMode = true;
                         _linkMode = true;
                         GameMaster.key = false;
                     }
@@ -36,7 +35,7 @@ public class Key : MonoBehaviour
             {
                 lockedDoor = Instantiate(_lockDoor, new Vector2(GameMaster._mousePositionX, GameMaster._mousePositionY), Quaternion.identity) as GameObject;
                 GameMaster._link = false;
-                GameMaster._linkMode = false;
+                GameMaster._keyLinkMode = false;
                 _linkMode |= false;
                 _linking = true;
             }
