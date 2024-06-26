@@ -5,12 +5,17 @@ public class Key : MonoBehaviour
     [SerializeField] BoxCollider2D _boxCollider;
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] GameObject _lockDoor;
+    AudioSource _audioSource;
     private bool _linkMode = false;
     bool _haveKey = false;
     bool _linking = false;
     GameObject lockedDoor;
     LockDoor open;
 
+    private void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
     private void Update()
     {
         if (GameMaster._gameMode == 0)
@@ -57,6 +62,8 @@ public class Key : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("player"))
         {
+            _audioSource.time = 0.25f;
+            _audioSource.Play();
             if (_linking)
             {
                 _haveKey = true;

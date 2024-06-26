@@ -23,7 +23,7 @@ public class GameMaster : MonoBehaviour
         _buttonText = GameObject.Find("ボタンテキスト");
         _upText = _upperText.GetComponent<Text>();
         _buttonText1 = _buttonText.GetComponent<Text>();
-        _upText.text = "Makeng...";
+        _upText.text = "Making...";
         _buttonText1.text = "Play!";
         _camera = Camera.main;
     }
@@ -51,7 +51,7 @@ public class GameMaster : MonoBehaviour
         else
         {
             _gameMode = 0;
-            _upText.text = "Makeng...";
+            _upText.text = "Making...";
             _buttonText1.text = "Play!";
         }
     }

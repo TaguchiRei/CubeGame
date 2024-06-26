@@ -6,6 +6,7 @@ public class Door : MonoBehaviour
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] BoxCollider2D _boxCollider;
     [SerializeField] Transform _transform;
+    AudioSource _audioSource;
     GameObject _gameObject;
     Transform _plyerTransform;
     bool _switchBox =false;
@@ -13,6 +14,7 @@ public class Door : MonoBehaviour
     {
         _gameObject = GameObject.Find("cube");
         _plyerTransform = _gameObject.GetComponent<Transform>();
+        _audioSource = GetComponent<AudioSource>();
         _spriteRenderer.color = new Color(255, 255, 255, 255);
         _boxCollider.enabled = true;
 
@@ -41,6 +43,7 @@ public class Door : MonoBehaviour
         //Œ®‚ðŽ‚Á‚Ä‚¢‚é‚Æ‚«‚ÍÁ”ï‚µ‚Ä’Ê‚ê‚é‚æ‚¤‚É‚È‚é
         if (Input.GetKeyDown(KeyCode.R) && GameMaster._gameMode == 1 && GameMaster._haveKey > 0 && distance < 2)
         {
+            _audioSource.Play();
             GameMaster._haveKey -= 1;
             _canOpen = true;
         }
