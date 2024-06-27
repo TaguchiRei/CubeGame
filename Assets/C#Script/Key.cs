@@ -52,7 +52,6 @@ public class Key : MonoBehaviour
             {
                 open = lockedDoor.GetComponent<LockDoor>();
                 open.Open(true);
-                _linking = false;
                 _haveKey = false;
             }
         }
@@ -81,5 +80,6 @@ public class Key : MonoBehaviour
     {
         _boxCollider.enabled = true;
         _spriteRenderer.color = new Color(255, 255, 255, 255);
+        _haveKey = false;
     }
 }

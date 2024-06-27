@@ -49,6 +49,7 @@ public class CameraRotate : MonoBehaviour
             }else
             {
                 GameMaster._correction = true;
+                transform.rotation = new Quaternion(0,0,180,0);
             }
             rotation = false;
             GameMaster._Rotate = 0;

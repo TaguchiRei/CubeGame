@@ -46,8 +46,6 @@ public class Door : MonoBehaviour
             _audioSource.Play();
             GameMaster._haveKey -= 1;
             _canOpen = true;
-            GameMaster._cameraXY = transform.position;
-            GameMaster._cameraMove = true;
         }
         //Œ®‚ğ‚Â‚¯‚é‚½‚ß‚É•ÒWƒ‚[ƒh’†‚É”jŠü‚·‚é
         if (Input.GetKeyDown(KeyCode.R) && GameMaster._gameMode == 0)
