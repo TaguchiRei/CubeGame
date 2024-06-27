@@ -12,6 +12,8 @@ TagManager:
   - lockeddoor
   - switchBox
   - gool
+  - enemy
+  - mousePos
   layers:
   - Default
   - TransparentFX

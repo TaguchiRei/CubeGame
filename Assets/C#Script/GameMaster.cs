@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class GameMaster : MonoBehaviour
 {
     public static float _gameMode = 0;
+    [SerializeField] GameObject _paint;
     GameObject _upperText;
     GameObject _buttonText;
     Text _upText;
@@ -19,6 +20,8 @@ public class GameMaster : MonoBehaviour
     public static bool _boxLinkMode = false;
     public static bool _key = true;
     public static bool _correction = false;
+    float length = 0;
+    float number = 0;
     private void Start()
     {
         _upperText = GameObject.Find("左上テキスト");
@@ -28,6 +31,17 @@ public class GameMaster : MonoBehaviour
         _upText.text = "Making...";
         _buttonText1.text = "Play!";
         _camera = Camera.main;
+        for (int i = 1; i < 11; i++)
+        {
+            Instantiate(_paint, new Vector2(18 + length, 8.5f - number),Quaternion.identity);
+            number++;
+            if (number == 9)
+            {
+                number = 0;
+                length++;
+            }
+
+        }
     }
     private void Update()
     {

@@ -7,6 +7,8 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] Transform _transform;
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _audioClip1;
+    [SerializeField] AudioClip _audioClip2;
     GameObject _upperText;
     GameObject _buttonText;
     Text _upText;
@@ -50,7 +52,7 @@ public class PlayerMove : MonoBehaviour
             //ç∂âEÇ…ìÆÇ≠ÇΩÇﬂÇÃÉvÉçÉOÉâÉÄ
             float Yspeed = _rigifbody2d.velocity.y;
             float move = Input.GetAxisRaw("Horizontal");
-            if (move != _wall * -1 && GameMaster._Rotate == 0)
+            if (move != _wall * -1 && GameMaster._Rotate == 0 && !_end)
             {
                 _rigifbody2d.velocity = new Vector2(_moveSpeed * move, Yspeed);
             }
@@ -140,13 +142,18 @@ public class PlayerMove : MonoBehaviour
         {
             _canJump = true;
         }
+        if (collision.gameObject.CompareTag("enemy")&& !_end)
+        {
+            _audioSource.PlayOneShot(_audioClip2);
+            _end = true;
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("gool") && _end == false)
+        if (collision.gameObject.CompareTag("gool") && !_end)
         {
             _audioSource.time = 0.7f;
-            _audioSource.Play();
+            _audioSource.PlayOneShot(_audioClip1);
             _end = true;
         }
     }

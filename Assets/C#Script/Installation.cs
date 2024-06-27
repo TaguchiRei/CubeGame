@@ -3,6 +3,7 @@ using UnityEngine;
 public class Installation : MonoBehaviour
 {
     public GameObject[] _table = new GameObject[5];
+    public GameObject[] _table2 = new GameObject[5];
     public Sprite _LinkCursor;
     public  Sprite _Cursor;
     [SerializeField] SpriteRenderer _spriteRenderer;
@@ -22,7 +23,10 @@ public class Installation : MonoBehaviour
     {
         if (GameMaster._gameMode == 0)
         {
-            transform.position = new Vector2(GameMaster._mousePositionX, GameMaster._mousePositionY);
+            if (GameMaster._mousePositionX < 17&&GameMaster._mousePositionY<9)
+            {
+                transform.position = new Vector2(GameMaster._mousePositionX, GameMaster._mousePositionY);
+            }
             _spriteRenderer.color = new Color(255, 255, 255, 255);
             if (!GameMaster._keyLinkMode)
             {
@@ -41,15 +45,47 @@ public class Installation : MonoBehaviour
                             make.transform.position = new Vector2(GameMaster._mousePositionX, GameMaster._mousePositionY);
                             SE();
                         }
+                        else
+                        {
+                            var make = Instantiate(_table2[_type]);
+                            make.transform.position = new Vector2(GameMaster._mousePositionX, GameMaster._mousePositionY);
+                            SE();
+                        }
                     }
                     if (Input.GetButtonDown("Fire2"))
                     {
-                        _type++;
-                        if (_type == _table.Length)
+                        if(tableNumber == 0)
                         {
-                            _type = 0;
+                            _type++;
+                            if (_type == _table.Length)
+                            {
+                                _type = 0;
+                            }
+                            SE(2);
                         }
-                        SE(2);
+                        else
+                        {
+                            _type++;
+                            if (_type == _table2.Length)
+                            {
+                                _type = 0;
+                            }
+                            SE(2);
+                        }
+                    }
+                }
+                if (Input.GetKeyDown(KeyCode.LeftShift))
+                {
+                    SE(2);
+                    if(tableNumber == 0)
+                    {
+                        tableNumber = 1;
+                        _type = 0;
+                    }
+                    else
+                    {
+                        tableNumber = 0;
+                        _type =0;
                     }
                 }
             }
