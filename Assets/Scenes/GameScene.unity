@@ -1379,10 +1379,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ba7b7deb82804d54586d74373568aba1, type: 3}
   sprite2:
   - {fileID: 21300000, guid: 53be7cbe27c743e4484e9f3abdbd9a97, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: d5dbaaaa4ad5bff4683410454e94b9bf, type: 3}
   spriteRenderer: {fileID: 1493935411}
 --- !u!212 &1493935411
 SpriteRenderer:
@@ -1761,10 +1758,7 @@ MonoBehaviour:
   - {fileID: 3304168666492984994, guid: 2e92b67bd3a5c0945818126ed70e751e, type: 3}
   _table2:
   - {fileID: 2210009091822819774, guid: a490cb25314f9ea40a466e1437190da3, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 705991742333101247, guid: 75dd4c35a34849e4e89f4c72184e6ea0, type: 3}
   _LinkCursor: {fileID: 21300000, guid: 8384ea23e700bc14287f17afe662a5bd, type: 3}
   _Cursor: {fileID: 21300000, guid: b6a4fdd522ab0aa4ba9a1c56c1f7b04f, type: 3}
   _spriteRenderer: {fileID: 1963423882}

@@ -31,7 +31,7 @@ public class GameMaster : MonoBehaviour
         _upText.text = "Making...";
         _buttonText1.text = "Play!";
         _camera = Camera.main;
-        for (int i = 1; i < 11; i++)
+        for (int i = 1; i < 12; i++)
         {
             Instantiate(_paint, new Vector2(18 + length, 8.5f - number),Quaternion.identity);
             number++;
