@@ -23,7 +23,7 @@ public class Key : MonoBehaviour
             ResetGame();
             Vector2 select = new Vector2(GameMaster._mousePositionX, GameMaster._mousePositionY);
             Vector2 thisPosition = transform.position;
-            if (Input.GetKeyDown(KeyCode.R) && select == thisPosition &&GameMaster.key)
+            if (Input.GetKeyDown(KeyCode.R) && select == thisPosition &&GameMaster._key)
             {
                 if (!_linkMode)
                 {
@@ -31,7 +31,7 @@ public class Key : MonoBehaviour
                     {
                         GameMaster._keyLinkMode = true;
                         _linkMode = true;
-                        GameMaster.key = false;
+                        GameMaster._key = false;
                     }
                 }
             }

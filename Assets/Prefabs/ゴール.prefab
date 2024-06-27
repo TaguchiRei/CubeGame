@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3240672732591507147}
   - component: {fileID: 1822664137368597562}
   - component: {fileID: -6609320663972401922}
+  - component: {fileID: 103611206449177623}
   m_Layer: 0
   m_Name: "\u30B4\u30FC\u30EB"
   m_TagString: gool
@@ -141,5 +142,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd78670286507f946a2884c2630d56d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &103611206449177623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8355955222943572504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60390f8844ff9b7428ebab7143cb5257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

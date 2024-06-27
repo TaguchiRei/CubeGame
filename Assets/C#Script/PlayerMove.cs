@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -51,7 +50,7 @@ public class PlayerMove : MonoBehaviour
             //左右に動くためのプログラム
             float Yspeed = _rigifbody2d.velocity.y;
             float move = Input.GetAxisRaw("Horizontal");
-            if (move != _wall * -1)
+            if (move != _wall * -1 && GameMaster._Rotate == 0)
             {
                 _rigifbody2d.velocity = new Vector2(_moveSpeed * move, Yspeed);
             }
@@ -66,11 +65,25 @@ public class PlayerMove : MonoBehaviour
 
             if (move < 0)
             {
-                _transform.transform.localScale = new Vector3(-2, 2, 1);
+                if (!GameMaster._correction)
+                {
+                    _transform.transform.localScale = new Vector3(-2, 2, 1);
+                }
+                else
+                {
+                    _transform.transform.localScale = new Vector3(2, 2, 1);
+                }
             }
             else if (move > 0)
             {
-                _transform.transform.localScale = new Vector3(2, 2, 1);
+                if (!GameMaster._correction)
+                {
+                    _transform.transform.localScale = new Vector3(2, 2, 1);
+                }
+                else
+                {
+                    _transform.transform.localScale = new Vector3(-2, 2, 1);
+                }
             }
             //スペースキーを押したときの動作
             if (Input.GetButtonDown("Jump") && _canJump)
@@ -98,6 +111,22 @@ public class PlayerMove : MonoBehaviour
                 GameMaster._gameMode = 0;
             }
         }
+        if (!GameMaster._correction)
+        {
+            var X = transform.localScale.x;
+            _rigifbody2d.gravityScale = 6;
+            _transform.localScale = new Vector3(X, 2, 1);
+            _moveSpeed = 5;
+            _jumpP = 1;
+        }
+        else
+        {
+            var X = _transform.localScale.x;
+            _rigifbody2d.gravityScale = -6;
+            _transform.localScale = new Vector3(X, -2, 1);
+            _moveSpeed = -5;
+            _jumpP = -1;
+        }
 
     }
 
@@ -114,7 +143,7 @@ public class PlayerMove : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("gool")&&_end ==false)
+        if (collision.gameObject.CompareTag("gool") && _end == false)
         {
             _audioSource.time = 0.7f;
             _audioSource.Play();
@@ -126,6 +155,6 @@ public class PlayerMove : MonoBehaviour
         _wall = 0;
     }
 
-    
+
 
 }

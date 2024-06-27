@@ -10,13 +10,13 @@ public class Appearance : MonoBehaviour
             {
                 if (this.tag == "lockeddoor")
                 {
-                    GameMaster.key = true;
+                    GameMaster._key = true;
                 }
                 Destroy(gameObject);
             }
 
         }
-        if (transform.position.x < 0.5f || transform.position.y < 0.2f)
+        if (transform.position.x < 0.5f||transform.position.x>16.7f || transform.position.y < 0.2f||transform.position.y>8.7)
         {
             Destroy(gameObject);
         }

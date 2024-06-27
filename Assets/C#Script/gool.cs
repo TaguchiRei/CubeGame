@@ -1,13 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class gool : MonoBehaviour
+public class Gool : MonoBehaviour
 {
-    [SerializeField] AudioSource AudioSource;
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void Update()
     {
-        AudioSource.time = 1;
-        AudioSource.Play();
+        if (Input.GetButtonDown("Fire1") && Installation._type == 7 && Installation.tableNumber == 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

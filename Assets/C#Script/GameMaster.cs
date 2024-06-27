@@ -13,10 +13,12 @@ public class GameMaster : MonoBehaviour
     public static float _mousePositionX;
     public static float _mousePositionY;
     public static float _haveKey =0;
+    public static float _Rotate = 0;
     public static bool _link = false;
     public static bool _keyLinkMode =false;
     public static bool _boxLinkMode = false;
-    public static bool key = true;
+    public static bool _key = true;
+    public static bool _correction = false;
     private void Start()
     {
         _upperText = GameObject.Find("左上テキスト");
@@ -58,5 +60,6 @@ public class GameMaster : MonoBehaviour
     private void ResetGame()
     {
         _haveKey = 0;
+        _correction = false;
     }
 }

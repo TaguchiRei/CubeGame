@@ -10,6 +10,7 @@ public class Installation : MonoBehaviour
     [SerializeField] AudioClip _put;
     [SerializeField] AudioClip _change;
     public static int _type = 0;
+    public static int tableNumber = 0;
 
     void Start()
     {
@@ -34,9 +35,12 @@ public class Installation : MonoBehaviour
                 {
                     if (Input.GetButtonDown("Fire1"))
                     {
-                        var make = Instantiate(_table[_type]);
-                        make.transform.position = new Vector2(GameMaster._mousePositionX, GameMaster._mousePositionY);
-                        SE();
+                        if(tableNumber == 0)
+                        {
+                            var make = Instantiate(_table[_type]);
+                            make.transform.position = new Vector2(GameMaster._mousePositionX, GameMaster._mousePositionY);
+                            SE();
+                        }
                     }
                     if (Input.GetButtonDown("Fire2"))
                     {
