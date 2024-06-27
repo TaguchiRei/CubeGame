@@ -36,8 +36,8 @@ public class Enemy : MonoBehaviour
 
         if (hit.collider)
         {
-            _moveSpeed = _moveSpeed * -1f;
-            _lineForWall.x = _lineForWall.x * -1;
+            _moveSpeed *= -1f;
+            _lineForWall.x *=  -1;
         }
 
         velo = _moveDirection.normalized * _moveSpeed;

@@ -110,7 +110,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ba7b7deb82804d54586d74373568aba1, type: 3}
   _sprite2:
   - {fileID: 21300000, guid: 53be7cbe27c743e4484e9f3abdbd9a97, type: 3}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: d5dbaaaa4ad5bff4683410454e94b9bf, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

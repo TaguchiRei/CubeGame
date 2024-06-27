@@ -6,19 +6,22 @@ public class CameraRotate : MonoBehaviour
     [SerializeField] Transform Transform;
     [SerializeField] AudioSource AudioSource;
     [SerializeField] float _rotateTime = 2;
+    [SerializeField] Rigidbody2D _rigidbody2d;
     float time = 0;
     float rotate = 0;
+    float moveX =0;
+    float moveY =0;
     bool rotation = false;
 
     void Update()
     {
         if (GameMaster._gameMode == 0)
         {
+            GameMaster._cameraMove = false;
             Camera.main.orthographicSize = 6f;
             transform.position = new Vector3(10f, 4.3f, -10f);
-            GameMaster._Rotate = 0;
             transform.rotation = new Quaternion(0, 0, 0, 0);
-
+            GameMaster._Rotate = 0;
         }
         else
         {
@@ -47,10 +50,16 @@ public class CameraRotate : MonoBehaviour
             {
                 GameMaster._correction = true;
             }
-            Debug.Log(GameMaster._Rotate+"GR");
             rotation = false;
             GameMaster._Rotate = 0;
             AudioSource.Stop();
+        }
+        if (GameMaster._cameraMove)
+        {
+            moveX = GameMaster._cameraXY.x;
+            moveY = GameMaster._cameraXY.y;
+            transform.position = new Vector3(moveX, moveY,-10);
+            Camera.orthographicSize = 3;
         }
     }
 }

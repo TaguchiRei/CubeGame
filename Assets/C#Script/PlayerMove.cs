@@ -9,6 +9,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioClip _audioClip1;
     [SerializeField] AudioClip _audioClip2;
+    [SerializeField] GameObject _goolEfect;
     GameObject _upperText;
     GameObject _buttonText;
     Text _upText;
@@ -152,9 +153,11 @@ public class PlayerMove : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("gool") && !_end)
         {
+            GameMaster._cameraMove =true;
             _audioSource.time = 0.7f;
             _audioSource.PlayOneShot(_audioClip1);
             _end = true;
+            Instantiate(_goolEfect, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
