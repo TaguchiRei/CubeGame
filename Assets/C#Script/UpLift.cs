@@ -3,7 +3,9 @@ using UnityEngine;
 public class UpLift : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rigidbody2;
-    float speed = 0;
+    bool _onOff = false;
+    float back = 1;
+    float timer = 0;
     Vector2 start;
 
     private void Start()
@@ -15,43 +17,44 @@ public class UpLift : MonoBehaviour
     {
         if (GameMaster._gameMode == 1)
         {
-            if (speed == 0)
+            if (_onOff)
             {
-                rigidbody2.velocity = new Vector2(0, 0);
-            }
-            else if (speed == 1)
-            {
-                rigidbody2.velocity = new Vector2(0, 5);
-            }
-            else
-            {
-                rigidbody2.velocity = new Vector2(0, -10);
+                rigidbody2.velocity = Vector2.up * 5 * back;
             }
         }
         else
         {
             transform.position = start;
+            back = 0;
+        }
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            if (timer < 0)
+            {
+                _onOff = true;
+                back = -1;
+            }
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("player"))
         {
-            if (collision.gameObject.CompareTag("Untagged"))
-            {
-                speed = 0;
-            }
-            else
-            {
-                speed = 1;
-            }
+            _onOff = true;
+            back = 1;
+            timer = 10f;
+        }
+        else if (collision.gameObject.CompareTag("stopper") || collision.gameObject.CompareTag("Untagged"))
+        {
+            _onOff = false;
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("player"))
         {
-            speed = -1;
+            timer = 0.25f;
         }
     }
 }

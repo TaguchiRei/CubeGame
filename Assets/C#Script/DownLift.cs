@@ -25,6 +25,7 @@ public class DownLift : MonoBehaviour
         else
         {
             transform.position = start;
+            back = 0;
         }
         if (timer > 0)
         {
