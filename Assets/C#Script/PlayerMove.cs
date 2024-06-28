@@ -153,7 +153,8 @@ public class PlayerMove : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("gool") && !_end)
         {
-            GameMaster._cameraMove =true;
+            GameMaster._cameraXY = transform.position;
+            GameMaster._cameraMove = true;
             _audioSource.time = 0.7f;
             _audioSource.PlayOneShot(_audioClip1);
             _end = true;
