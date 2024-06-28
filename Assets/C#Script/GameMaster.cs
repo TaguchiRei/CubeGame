@@ -21,9 +21,11 @@ public class GameMaster : MonoBehaviour
     public static bool _key = true;
     public static bool _correction = false;
     public static bool _cameraMove=false;
+    public static bool _smartphone = false;
     float length = 0;
     float number = 0;
     public static Vector2 _cameraXY;
+  
     private void Start()
     {
         _upperText = GameObject.Find("左上テキスト");
