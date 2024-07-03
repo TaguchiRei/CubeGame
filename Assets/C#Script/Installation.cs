@@ -18,7 +18,6 @@ public class Installation : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (GameMaster._gameMode == 0)
